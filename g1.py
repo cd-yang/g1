@@ -1,28 +1,35 @@
-import groq
-import time
-import os
+# import groq
 import json
+import os
+import time
 
-client = groq.Groq()
+from langchain_community.llms import VLLMOpenAI
+
+# client = groq.Groq()
+llm = VLLMOpenAI(
+    openai_api_key="EMPTY",
+    openai_api_base="http://192.168.100.231:8000/v1",
+    model_name="/home/ubuntu/ycd/pretrained_models/Qwen/Qwen2___5-Coder-32B-instruct/",
+    model_kwargs={"stop": ["."]},
+)
+print(llm.invoke("What is the capital of France ?"))
 
 def make_api_call(messages, max_tokens, is_final_answer=False, custom_client=None):
-    global client
-    if custom_client != None:
-        client = custom_client
+    # global client
+    # if custom_client != None:
+    #     client = custom_client
     
     for attempt in range(3):
         try:
             if is_final_answer:
-                response = client.chat.completions.create(
-                    model="llama-3.1-70b-versatile",
+                response = llm.chat.completions.create(
                     messages=messages,
                     max_tokens=max_tokens,
                     temperature=0.2,
             ) 
                 return response.choices[0].message.content
             else:
-                response = client.chat.completions.create(
-                    model="llama-3.1-70b-versatile",
+                response = llm.chat.completions.create(
                     messages=messages,
                     max_tokens=max_tokens,
                     temperature=0.2,

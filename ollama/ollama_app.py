@@ -22,6 +22,7 @@ def make_api_call(messages, max_tokens, is_final_answer=False):
                 # model="qwen2.5:32b",
                 # model="qwen2.5-coder:32b-instruct-fp16",
                 # model="qwq:32b-preview-fp16",
+                # model="qwq:32b",
                 messages=messages,
                 options={"temperature":0.2, 
                         #  "num_predict":max_tokens # 这里可能会导致 unicode 解析错误

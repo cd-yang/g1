@@ -3,6 +3,12 @@ from textwrap import dedent
 
 from crewai import Agent, Crew, Task
 
+# ref: 
+# https://www.cnblogs.com/obullxl/p/18424333/NTopic2024092101
+# https://mp.weixin.qq.com/s/wqOqupVIDsKDW-Kmj3IRYw
+# https://github.com/crewAIInc/crewAI
+
+
 # 配置模型（qwen2.5-coder:7b）
 os.environ["OPENAI_API_BASE"] = 'http://192.168.100.231:11434'
 os.environ["OPENAI_MODEL_NAME"] = 'ollama/qwen2.5-coder:32b'
